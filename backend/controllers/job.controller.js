@@ -1,48 +1,9 @@
 
 import { Job } from "../models/job.model.js";
-// admin post krega job
-// export const postJob = async (req, res) => {
-//     try {
-//         console.log("BODY:", req.body);
-// console.log("USER ID:", req.id);
 
-//         const { title, description, requirements, salary, location, jobType, experience, position, companyId } = req.body;
-//         const userId = req.id;
-
-//         if (!title || !description || !requirements || !salary || !location || !jobType || !experience || !position || !companyId) {
-//             return res.status(400).json({
-//                 message: "Somethin is missing.",
-//                 success: false
-//             })
-//         };
-//          const job = await Job.create({
-//             title,
-//             description,
-//             requirements: requirements.split(","),
-//             salary: Number(salary),
-//             location,
-//             jobType,
-//             experienceLevel: experience,
-//             position,
-//             company: companyId,
-//             created_by: userId
-//          })
-//          return res.status(200).json({
-//             message:"New job created successfully",
-//             job,
-//             success:true
-//          });
-
-//     }catch(error){
-//          console.log(error);
-
-//     }
-// }
 export const postJob = async (req, res) => {
     try {
-        // console.log("BODY:", req.body);
-        // console.log("USER ID:", req.id);
-
+        
         const { 
             title, 
             description, 
@@ -57,7 +18,7 @@ export const postJob = async (req, res) => {
 
         const userId = req.id;
 
-        // ✅ FIXED VALIDATION
+    
         if (
             !title?.trim() ||
             !description?.trim() ||
@@ -66,7 +27,7 @@ export const postJob = async (req, res) => {
             !location?.trim() ||
             !jobType?.trim() ||
             !experience ||
-            position === undefined ||   // 🔥 yahi main fix hai
+            position === undefined ||   
             !companyId
         ) {
             return res.status(400).json({
