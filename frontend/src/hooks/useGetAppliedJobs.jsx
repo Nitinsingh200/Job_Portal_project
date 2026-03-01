@@ -23,23 +23,35 @@
 //     },[])
 // };
 // export default useGetAppliedJobs;
+
+import { setAllAppliedJobs } from "@/redux/jobSlice";
 import axios from "axios";
+import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { setAllAdminJobs } from "@/redux/jobSlice";
 
-const JOB_API_END_POINT = import.meta.env.VITE_JOB_API_END_POINT;
+const useGetAppliedJobs = () => {
 
-const fetchAllAdminJobs = async () => {
-    try {
-        const res = await axios.get(
-            `${JOB_API_END_POINT}/getadminjobs`,
-            { withCredentials: true }
-        );
+    const APPLICATION_API_END_POINT = import.meta.env.VITE_APPLICATION_API_END_POINT;
+    const dispatch = useDispatch();
 
-        if (res.data.success) {
-            dispatch(setAllAdminJobs(res.data.jobs));
-        }
-    } catch (error) {
-        console.log(error);
-    }
+    useEffect(() => {
+        const fetchAppliedJobs = async () => {
+            try {
+                const res = await axios.get(
+                    `${APPLICATION_API_END_POINT}/get`,
+                    { withCredentials: true }
+                );
+
+                if (res.data.success) {
+                    dispatch(setAllAppliedJobs(res.data.application));
+                }
+            } catch (error) {
+                console.log(error);
+            }
+        };
+
+        fetchAppliedJobs();
+    }, [dispatch]);
 };
+
+export default useGetAppliedJobs;
