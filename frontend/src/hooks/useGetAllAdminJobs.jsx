@@ -6,6 +6,8 @@ import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 
 const useGetAllAdminJobs = () => {
+
+    const JOB_API_END_POINT = import.meta.env.VITE_JOB_API_END_POINT;
     const dispatch = useDispatch();
     useEffect(()=>{
         const fetchAllAdminJobs = async () => {
