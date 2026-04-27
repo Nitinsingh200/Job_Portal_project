@@ -18,7 +18,7 @@ app.use(cookieParser());
 
 
 const corsOptions = {
-   origin:'https://frontend-job-portal-5tc8.onrender.com',
+   origin:'https://job-portal-frontend-lk8d.onrender.com',
    credentials:true
 }
 // app.use(cors({
